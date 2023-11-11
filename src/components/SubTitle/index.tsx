@@ -21,6 +21,9 @@ export class SubTitle extends Node {
       <Txt
         ref={this.txtRef}
         fill={'#fff'}
+        wrap={'wrap'}
+        width={1500}
+        textWrap={true}
         y={450}
         fontWeight={600}
         fontSize={60}
