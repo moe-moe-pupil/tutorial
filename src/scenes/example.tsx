@@ -9,7 +9,6 @@ import { tutorialSubTitle } from '../constants/subtitles';
 
 export default makeScene2D(function* (view) {
   setupView(view)
-
   const logoRef = createRef<Logo>();
   const subTitleRef = createRef<SubTitle>();
   const ccRef = createRef<CC>();

@@ -3,14 +3,14 @@
   "shared": {
     "background": null,
     "range": [
-      2.157034869904431,
+      0,
       null
     ],
     "size": {
       "x": 1920,
       "y": 1080
     },
-    "audioOffset": 0
+    "audioOffset": 2.1316282072803006e-14
   },
   "preview": {
     "fps": 60,
