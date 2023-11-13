@@ -2,6 +2,10 @@
   "version": 0,
   "timeEvents": [
     {
+      "name": "imgFlip",
+      "targetTime": 5.882954453435293
+    },
+    {
       "name": "music over",
       "targetTime": 1.4379026492195295
     }

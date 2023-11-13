@@ -19,6 +19,10 @@ export class SubTitle extends Node {
     this.contents = props.contents ?? this.contents
     this.add(
       <Txt
+        strokeFirst
+        lineWidth={10}
+        lineJoin={'round'}
+        stroke={'#000'}
         ref={this.txtRef}
         fill={'#fff'}
         wrap={'wrap'}
