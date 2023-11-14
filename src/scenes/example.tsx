@@ -31,5 +31,6 @@ export default makeScene2D(function* (view) {
   )
   view.add(<Img clip height={800}  ref={imgRef} src={hello} opacity={0} />)
   yield waitUntil('imgFlip', imgFlip(imgRef, confused))
+  yield waitUntil('imgRom', fadeHide(imgRef))
   yield* waitUntil('music over', all(jumpIn(imgRef), subTitleRef().start()))
 });
