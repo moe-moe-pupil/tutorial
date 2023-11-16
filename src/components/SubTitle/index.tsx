@@ -1,5 +1,6 @@
 import { NodeProps, Node, Txt } from "@motion-canvas/2d"
 import { createRef, createSignal, startPlayback, waitFor, waitUntil } from "@motion-canvas/core"
+import { SPEAKINGSPEED, TOPMOST } from "../../constants/number"
 
 export interface SubTitleContentProps {
   text: string,
@@ -34,13 +35,14 @@ export class SubTitle extends Node {
         fontSize={60}
         textAlign={'center'}
         text={''}
+        zIndex={TOPMOST}
       />
     )
   }
 
   public *start(): any {
     this.txtRef().text(this.contents[this.idx()].text)
-    yield* waitFor(this.contents[this.idx()].duration ?? this.contents[this.idx()].text.length / 8)
+    yield* waitFor(this.contents[this.idx()].duration ?? this.contents[this.idx()].text.length / SPEAKINGSPEED)
     if (this.idx() < this.contents.length - 1) {
       this.idx(this.idx() + 1)
       yield* this.start()
