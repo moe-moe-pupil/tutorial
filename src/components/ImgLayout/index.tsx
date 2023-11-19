@@ -1,4 +1,4 @@
-import { NodeProps, Node, Layout, Img, signal } from "@motion-canvas/2d"
+import { NodeProps, Node, Layout, Img, signal, Rect } from "@motion-canvas/2d"
 import { Reference, Signal, SignalValue, SimpleSignal, createSignal, makeRef, waitFor, createRefArray, all, createRef } from "@motion-canvas/core"
 import { TOPMOST } from "../../constants/number"
 import { fadeShow } from "../../utils/motion"
@@ -26,14 +26,22 @@ export class ImgLayout extends Node {
 
   public *addImgs(imgs: string[], delay: number = 0.2): any {
     if (imgs.length > 0) {
-      this.layoutRef().add(< Img
-        src={imgs[0]}
-        clip
-        height={200}
-        width={200}
-        opacity={0}
-        ref={this.imgsRef}
-      />)
+      this.layoutRef().add(
+        <Rect
+          width={200}
+          height={200}
+          fill={'#fff'}
+        >
+          < Img
+            src={imgs[0]}
+            clip
+            height={200}
+            width={200}
+            opacity={0}
+            ref={this.imgsRef}
+          />
+        </Rect>
+      )
       const newImgs = imgs.slice(1, imgs.length)
       yield* this.imgsRef[this.imgsRef.length - 1].opacity(1, delay)
       if (newImgs.length > 0) {

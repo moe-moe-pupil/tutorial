@@ -1,6 +1,7 @@
 import { NodeProps, Node, Txt } from "@motion-canvas/2d"
 import { createRef, createSignal, startPlayback, waitFor, waitUntil } from "@motion-canvas/core"
-import { SPEAKINGSPEED, TOPMOST } from "../../constants/number"
+import { SPEAKINGSPEED_ZH, TOPMOST } from "../../constants/number"
+import { calcSubtitleSpeed } from "../../utils/speakingFactor"
 
 export interface SubTitleContentProps {
   text: string,
@@ -42,7 +43,8 @@ export class SubTitle extends Node {
 
   public *start(): any {
     this.txtRef().text(this.contents[this.idx()].text)
-    yield* waitFor(this.contents[this.idx()].duration ?? this.contents[this.idx()].text.length / SPEAKINGSPEED)
+    console.log(calcSubtitleSpeed(this.contents[this.idx()].text))
+    yield* waitFor(this.contents[this.idx()].duration ?? calcSubtitleSpeed(this.contents[this.idx()].text))
     if (this.idx() < this.contents.length - 1) {
       this.idx(this.idx() + 1)
       yield* this.start()
