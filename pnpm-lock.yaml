@@ -28,6 +28,9 @@ devDependencies:
   '@types/jest':
     specifier: ^29.5.8
     version: 29.5.8
+  '@unsplash/ts-namespace-import-plugin':
+    specifier: ^1.0.0
+    version: 1.0.0
   jest:
     specifier: ^29.7.0
     version: 29.7.0
@@ -1130,6 +1133,10 @@ packages:
     resolution: {integrity: sha512-bocYSx4DI8TmdlvxqGpVNXOgCNR1Jj0gNPhhAY+iz1rgKDAaYrAYdFYnhDV1IFuiuVc9HkOwyDcFxaTElF3/wg==}
     dependencies:
       '@types/yargs-parser': 21.0.3
+    dev: true
+
+  /@unsplash/ts-namespace-import-plugin@1.0.0:
+    resolution: {integrity: sha512-Z/fuSAWte/OP1ctpM/8PtecGeBN358yR1rxMiVlTQ3xIvTTFNpjQuZuqkY3XfvWFQ8mvpqumQvS7hG8XnUkTWg==}
     dev: true
 
   /@wooorm/starry-night@1.7.0:

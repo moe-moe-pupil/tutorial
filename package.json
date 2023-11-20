@@ -17,6 +17,7 @@
     "@motion-canvas/ui": "^3.11.0",
     "@motion-canvas/vite-plugin": "^3.11.0",
     "@types/jest": "^29.5.8",
+    "@unsplash/ts-namespace-import-plugin": "^1.0.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.5",

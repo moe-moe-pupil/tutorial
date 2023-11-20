@@ -35,6 +35,6 @@ export default makeScene2D(function* (view) {
   view.add(<Img clip height={800} ref={imgRef} src={hello} opacity={0} />)
   view.add(<ImgLayout imgs={[]} ref={gameEngineImgsRef} />)
   yield waitUntil('imgFlip', imgFlip(imgRef, confused))
-  yield waitUntil('gameEngineImgs', all(fadeHide(imgRef), gameEngineImgsRef().addImgs(GAMEENGINEIMGS)))
+  yield waitUntil('gameEngineImgs', all(fadeHide(imgRef), gameEngineImgsRef().addImgs(GAMEENGINEIMGS, 0.1)))
   yield* waitUntil('music over', all(jumpIn(imgRef), subTitleRef().start()))
 });

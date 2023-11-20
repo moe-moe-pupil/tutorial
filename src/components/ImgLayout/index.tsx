@@ -1,7 +1,7 @@
 import { NodeProps, Node, Layout, Img, signal, Rect } from "@motion-canvas/2d"
 import { Reference, Signal, SignalValue, SimpleSignal, createSignal, makeRef, waitFor, createRefArray, all, createRef } from "@motion-canvas/core"
 import { TOPMOST } from "../../constants/number"
-import { fadeShow } from "../../utils/motion"
+import { fadeShow, jumpIn } from "../../utils/motion"
 
 export interface ImgLayoutProps extends NodeProps {
   imgs: string[]
@@ -24,6 +24,10 @@ export class ImgLayout extends Node {
     )
   }
 
+  public *horiFold() {
+    
+  }
+
   public *addImgs(imgs: string[], delay: number = 0.2): any {
     if (imgs.length > 0) {
       this.layoutRef().add(
@@ -43,7 +47,7 @@ export class ImgLayout extends Node {
         </Rect>
       )
       const newImgs = imgs.slice(1, imgs.length)
-      yield* this.imgsRef[this.imgsRef.length - 1].opacity(1, delay)
+      yield* all(this.imgsRef[this.imgsRef.length - 1].opacity(1, Math.max(delay, 0.1)))
       if (newImgs.length > 0) {
         yield* waitFor(delay)
         yield* this.addImgs(newImgs, delay)

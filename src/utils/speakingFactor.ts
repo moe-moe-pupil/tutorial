@@ -3,6 +3,7 @@ import { ap } from 'fp-ts/lib/Apply'
 import { Monoid } from 'fp-ts/lib/Monoid'
 import { flow, pipe } from 'fp-ts/lib/function'
 import { SPEAKINGSPEED_EN, SPEAKINGSPEED_PUNC, SPEAKINGSPEED_ZH } from '../constants/number'
+import { state } from 'fp-ts'
 
 type SupportedLanguages = 'ZH' | 'EN'
 
@@ -15,31 +16,17 @@ export const monoidAdd: Monoid<number> = {
   empty: 0,
 }
 
-const getPuncMarkTime = flow(
-  getPuncMarkChars,
+const getTime = (getFunc: (s: string) => RegExpMatchArray | null, speed: number) => flow(
+  getFunc,
   O.fromNullable,
   O.match(
     () => 0,
-    s => s.length / SPEAKINGSPEED_PUNC
+    s => s.length / speed
   )
 )
 
-const getZHTime = flow(
-  getZHChars,
-  O.fromNullable,
-  O.match(
-    () => 0,
-    s => s.length / SPEAKINGSPEED_ZH
-  )
-)
-
-const getENTime = flow(
-  getENChars,
-  O.fromNullable,
-  O.match(
-    () => 0,
-    s => s.length / SPEAKINGSPEED_EN
-  )
-)
+const getPuncMarkTime = getTime(getPuncMarkChars, SPEAKINGSPEED_PUNC)
+const getZHTime = getTime(getZHChars, SPEAKINGSPEED_ZH)
+const getENTime = getTime(getENChars, SPEAKINGSPEED_EN)
 
 export const calcSubtitleSpeed = (s: string) => getPuncMarkTime(s) + getZHTime(s) + getENTime(s)
